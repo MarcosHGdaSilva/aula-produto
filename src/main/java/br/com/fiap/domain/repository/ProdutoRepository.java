@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 public class ProdutoRepository {
 
@@ -48,4 +49,18 @@ public class ProdutoRepository {
         return retorno;
     }
 
+    public static Produto persist(Produto p) {
+        if(Objects.isNull(p.getNome())){
+            return null;
+
+        }
+        if(Objects.isNull(p.getDescricao())){
+            return null;
+        }
+        if(Objects.isNull(p.getValor())){
+            return null;
+        }
+        return ProdutoRepository.persist(p);
+
+    }
 }
