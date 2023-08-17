@@ -1,14 +1,13 @@
 package br.com.fiap.domain.repository;
 
 import br.com.fiap.domain.entity.Produto;
-import br.com.fiap.domain.repository.abstracao.Repository;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class ProdutoRepository implements Repository<Produto, Long> {
+public class ProdutoRepository {
 
     private static List<Produto> produtos;
 
@@ -25,11 +24,11 @@ public class ProdutoRepository implements Repository<Produto, Long> {
         produtos.addAll( Arrays.asList( celular, tablet, pendrive, ssd, celular2 ) );
     }
 
-    public List<Produto> findAll() {
+    public static List<Produto> findAll() {
         return produtos;
     }
 
-    public Produto findById(Long id) {
+    public static Produto findById(Long id) {
 
         for (Produto p : produtos) {
             if (p.getId().equals( id )) {
@@ -39,7 +38,7 @@ public class ProdutoRepository implements Repository<Produto, Long> {
         return null;
     }
 
-    public List<Produto> findByName(String texto) {
+    public static List<Produto> findByName(String texto) {
         List<Produto> retorno = new ArrayList<>();
         for (Produto p : produtos) {
             if (p.getNome().equalsIgnoreCase( texto )) {
@@ -49,7 +48,7 @@ public class ProdutoRepository implements Repository<Produto, Long> {
         return retorno;
     }
 
-    public Produto persist(Produto p) {
+    public static Produto persist(Produto p) {
         p.setId( produtos.size() + 1L );
         produtos.add( p );
         return p;
